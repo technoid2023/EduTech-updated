@@ -112,12 +112,12 @@ const SendOtp=()=>{
             
               <div className="d-flex flex-row align-items-center mb-4 ">
                 <MDBIcon fas icon="user me-3" size='lg'/>
-                <MDBInput label='Your Name' name='name' type='text' onChange={handleInput} className='w-100'/>
+                <MDBInput label='Your Name' name='name' required type='text' onChange={handleInput} className='w-100'/>
               </div>
               
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="envelope me-3" size='lg'/>
-                <MDBInput label='Your Email' name='email' onChange={handleInput} type='email'/>
+                <MDBInput label='Your Email' required name='email' onChange={handleInput} type='email'/>
               </div>
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="phone me-3" size='lg'/>
