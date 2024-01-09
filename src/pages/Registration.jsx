@@ -71,7 +71,7 @@ const verify=(e)=>{
   email:user.email,
   otp:otp
  }
- if(otpData.email!="" || otpData.otp!=0){
+ if(otpData.email!="" || otpData.otp!=0 || otpData.otp!=""){
   axios.post('https://edu-tech-bwe5.onrender.com/v1/verifyotp',otpData).then(res=>{ 
     console.log(res); 
   if(res.data.Success===true){
