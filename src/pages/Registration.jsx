@@ -112,41 +112,41 @@ const SendOtp=()=>{
             
               <div className="d-flex flex-row align-items-center mb-4 ">
                 <MDBIcon fas icon="user me-3" size='lg'/>
-                <MDBInput label='Your Name' name='name' required type='text' onChange={handleInput} className='w-100'/>
+                <MDBInput label='Your Name' name='name' type='text' required onChange={handleInput} className='w-100'/>
               </div>
               
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="envelope me-3" size='lg'/>
-                <MDBInput label='Your Email' required name='email' onChange={handleInput} type='email'/>
+                <MDBInput label='Your Email' name='email' required onChange={handleInput} type='email'/>
               </div>
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="phone me-3" size='lg'/>
-                <MDBInput label='Your Mobile Number' name='mobile' onChange={handleInput} type='number'/>
+                <MDBInput label='Your Mobile Number' name='mobile' required onChange={handleInput} type='number'/>
               </div>
               <div className="d-flex flex-row align-items-center mb-4 ">
                 <MDBIcon fas icon="university me-3" size='lg'/>
-                <MDBInput label='Your College' name='college' type='text' onChange={handleInput} className='w-100'/>
+                <MDBInput label='Your College' name='college' type='text' required onChange={handleInput} className='w-100'/>
               </div>
               <div className="d-flex flex-row align-items-center mb-4 ">
                 <MDBIcon fas icon="laptop me-3" size='lg'/>
-                <MDBInput label='Your Course' name='course' type='text' onChange={handleInput} className='w-100'/>
+                <MDBInput label='Your Course' name='course' type='text' required onChange={handleInput} className='w-100'/>
               </div>
               <div className="d-flex flex-row align-items-center mb-4 ">
                 <MDBIcon fas icon="city me-3" size='lg'/>
-                <MDBInput label='Your City' name='city' type='text'  onChange={handleInput} className='w-100'/>
+                <MDBInput label='Your City' name='city' type='text' required onChange={handleInput} className='w-100'/>
               </div>
               <div className="d-flex flex-row align-items-center mb-4 ">
                 <MDBIcon fas icon="map-marked-alt me-3" size='lg'/>
-                <MDBInput label='Your Pin Code' name='pin_code' type='number' onChange={handleInput} className='w-100'/>
+                <MDBInput label='Your Pin Code' name='pin_code' type='number' required onChange={handleInput} className='w-100'/>
               </div>
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="lock me-3" size='lg'/>
-                <MDBInput label='Password' name='password' onChange={handleInput} type='password'/>
+                <MDBInput label='Password' name='password' required onChange={handleInput} type='password'/>
               </div>
 
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="key me-3" size='lg'/>
-                <MDBInput label='OTP' name='otp' onChange={handleOtp} type='number'/>
+                <MDBInput label='OTP' name='otp' required onChange={handleOtp} type='number'/>
               </div> 
               <MDBBtn className='mb-4'  type="button" onClick={SendOtp} size='lg'>Send OTP</MDBBtn>
               <MDBBtn className='mb-4'  type="button" disabled={!isverify} onClick={verify} size='lg'>Verify</MDBBtn>
