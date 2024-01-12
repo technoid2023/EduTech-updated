@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link ,useNavigate} from "react-router-dom";
 import { useState } from "react";
-import toast  from "react-hot-toast";
+import toast ,{Toaster} from "react-hot-toast";
 import axios from "axios";
 import Loader from "../components/Load";
 import {
@@ -23,13 +23,17 @@ function Login() {
     const [user,setUser]=useState({
         
         email:"",
-        password:""
+        password:null
     })
     const handleInput=(e)=>{
         e.persist();
         setUser({...user,[e.target.name]:e.target.value})
     }
     const userSubmit=(e)=>{
+      if(user.email==="" || user.password===null){
+        toast.error('Give Details !!!')
+      }
+      else{
         setLoad(true)
         e.preventDefault();
         const data={
@@ -42,8 +46,11 @@ function Login() {
           console.log(res); 
           setLoad(false)
         if(res.data.Success===true){
+          toast.success("Logged IN")
+            localStorage.setItem('logintoken',res.data.Token)
+            localStorage.setItem('user',JSON.stringify(res.data.Data[0]))
+            navigate('/profile')        
             
-            navigate('/landing')        
         }
         else{
           
@@ -51,6 +58,8 @@ function Login() {
         }
     
 })
+      }
+        
     }
     if(load){
         return(
@@ -59,6 +68,11 @@ function Login() {
     }
   return (
     <MDBContainer className="my-5">
+
+<Toaster
+                position="top-center"
+                reverseOrder={false}
+                />
         <form onSubmit={userSubmit}>
       <MDBCard>
         <MDBRow className='g-0'>
@@ -81,7 +95,7 @@ function Login() {
                 <MDBInput wrapperClass='mb-4' label='Password' name='password' type='password' onChange={handleInput} size="lg"/>
 
               <MDBBtn className="mb-4 px-5" color='dark' type="submit" size='lg'>Login</MDBBtn>
-              <a className="small text-muted" href="#!">Forgot password?</a>
+              <Link className="small text-muted" to="/reset-password">Forgot password?</Link>
               <p className="mb-5 pb-lg-2" style={{color: '#393f81'}}>Don't have an account? <Link to="/Register" style={{color: '#393f81'}}>Register here</Link></p>
 
               <div className='d-flex flex-row justify-content-start'>

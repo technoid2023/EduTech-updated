@@ -2,6 +2,7 @@ import React from 'react';
 import {  useState } from "react";
 import toast ,{Toaster} from "react-hot-toast";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 import {
   MDBBtn,
   MDBContainer,
@@ -17,6 +18,7 @@ import {
 from 'mdb-react-ui-kit';
 
 function Register() {
+  const navigate=useNavigate();
   const[isOtp,setisOtp]=useState(false)
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const [isverify,setIsverify]=useState(false)
@@ -56,7 +58,10 @@ function Register() {
         axios.post('https://edu-tech-bwe5.onrender.com/v1/registration',data).then(res=>{ 
           console.log(res); 
         if(res.data.Success===true){
-            toast.success(res.data.Message)        
+            toast.success(res.data.Message) 
+            setTimeout(() => {
+              navigate('/login');
+            }, 1000);       
         }
         else{
             toast.error(res.data.Message)
@@ -71,7 +76,7 @@ const verify=(e)=>{
   email:user.email,
   otp:otp
  }
- if(otpData.email!="" || otpData.otp!=0 || otpData.otp!=""){
+ if(otpData.email!=="" || otpData.otp!==0 || otpData.otp!==""){
   axios.post('https://edu-tech-bwe5.onrender.com/v1/verifyotp',otpData).then(res=>{ 
     console.log(res); 
   if(res.data.Success===true){
@@ -92,7 +97,7 @@ const verify=(e)=>{
 const SendOtp=()=>{
 
   let mail={email:user.email}
-  if(mail.email==""){
+  if(mail.email===""){
 toast.error("Enter Your Mail")
   }
   else{
