@@ -1,10 +1,47 @@
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import { Link } from "react-router-dom";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
+import toast,{Toaster} from 'react-hot-toast';
 export default function Profile() {
+  const navigate=useNavigate();
   let User=JSON.parse(localStorage.getItem('user'));
+  const Token=(localStorage.getItem('logintoken'))
+
+  const logout=()=>{
+    if(Token===null){
+      toast.error("Session Time Out !")
+  }
+  else{
+      
+      axios.post('https://edu-tech-bwe5.onrender.com/v1/logout',{},{headers: {
+      'token': Token}
+  }).then(res=>{ 
+          console.log(res);
+        if(res.data.Success===true){
+         
+        localStorage.removeItem('user')
+        localStorage.removeItem('logintoken')
+    
+          toast.success(res.data.Message)
+          setTimeout(() => {
+              navigate('/login');
+            }, 1000);
+          
+        }
+        else{
+            toast.error(res.data.Message)
+        }
+      })
+  }
+}
   return (
     <section className="vh-100" style={{ backgroundColor: '#f4f5f7' }}>
+      <Toaster
+                position="top-center"
+                reverseOrder={false}
+                />
       <MDBContainer className="py-5 h-100">
         <MDBRow className="justify-content-center align-items-center h-100">
           <MDBCol lg="6" className="mb-4 mb-lg-0">
@@ -16,7 +53,10 @@ export default function Profile() {
                     alt="Avatar" className="my-5" style={{ width: '80px' }} fluid />
                   <MDBTypography tag="h5">{User.name}</MDBTypography>                   
                   <Link  className="fas fa-pen-to-square fa-2x" color='dark' to='/user-update'/>
-                
+                 <MDBRow style={{ marginTop:'150px' }}>
+                 <MDBTypography tag="h6">Log Out</MDBTypography>
+                 <Link  className="fas fa-right-from-bracket fa-2x" onClick={logout} color='dark'/>    
+                 </MDBRow>
                 </MDBCol>
                 
                 <MDBCol md="8">
