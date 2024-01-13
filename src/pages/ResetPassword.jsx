@@ -16,8 +16,8 @@ import {useNavigate} from "react-router-dom";
 function Reset() {
     const[femail,setFemail]=useState(false)
     const[fotp,setFotp]=useState(true)
-    const[fnewpass,setFnewpass]=useState(false)
-    const[foldpass,setFoldpass]=useState(false)
+    
+    
     const[resetdisable,setResetdisable]=useState(true);
     const[otpdisable,setOtpdisable]=useState(false);
     const navigate=useNavigate();
@@ -36,7 +36,7 @@ function Reset() {
     const SendOtp=()=>{
         console.log(user.newpassword);
         let mail={email:user.email}
-        if(user.email==="" || user.newpassword===null || user.confirmpassword===null){
+        if(user.email==="" ){
       toast.error("Fill all Data First")
         }
         if(user.newpassword!==user.confirmpassword){
@@ -49,8 +49,8 @@ function Reset() {
            setFotp(false)
            setResetdisable(false)
            setFemail(true)
-           setFnewpass(true)
-           setFoldpass(true)
+           
+          
            setOtpdisable(true)
       
             toast.success(res.data.Message)
@@ -123,8 +123,8 @@ const resetPassword=()=>{
                 </MDBCol>
               </MDBRow>
 
-              <MDBInput wrapperClass='mb-4' disabled={fnewpass} label='New Password' name='newpassword' onChange={handleInput} type='password'/>
-              <MDBInput wrapperClass='mb-4' disabled={foldpass} label='Confirm Password' name='confirmpassword' onChange={handleInput} type='text'/>
+              <MDBInput wrapperClass='mb-4' label='New Password' name='newpassword' onChange={handleInput} type='password'/>
+              <MDBInput wrapperClass='mb-4' label='Confirm Password' name='confirmpassword' onChange={handleInput} type='text'/>
 
               <MDBBtn className='mb-4'  type="button" disabled={otpdisable} onClick={SendOtp} size='lg'>Send OTP</MDBBtn>
               <MDBBtn className='w-100 mb-4' type="button" color='success'disabled={resetdisable} onClick={resetPassword} size='lg'>Reset</MDBBtn>
