@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
-
+import { Link } from "react-router-dom";
 export default function Profile() {
   let User=JSON.parse(localStorage.getItem('user'));
   return (
@@ -15,7 +15,7 @@ export default function Profile() {
                   <MDBCardImage src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                     alt="Avatar" className="my-5" style={{ width: '80px' }} fluid />
                   <MDBTypography tag="h5">{User.name}</MDBTypography>                   
-                  <MDBIcon far icon="edit mb-5" />
+                  <Link  className="fas fa-pen-to-square fa-2x" color='dark' to='/user-update'/>
                 
                 </MDBCol>
                 
