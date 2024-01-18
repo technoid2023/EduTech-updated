@@ -96,7 +96,7 @@ function Login() {
 
               <MDBBtn className="mb-4 px-5" color='dark' type="submit" size='lg'>Login</MDBBtn>
               <Link className="small text-muted" to="/reset-password">Forgot password?</Link>
-              <p className="mb-5 pb-lg-2" style={{color: '#393f81'}}>Don't have an account? <Link to="/Register" style={{color: '#393f81'}}>Register here</Link></p>
+              <p className="mb-5 pb-lg-2" style={{color: '#393f81'}}>Don't have an account? <Link to="/register" style={{color: '#393f81'}}>Register here</Link></p>
 
               <div className='d-flex flex-row justify-content-start'>
                 <a href="#!" className="small text-muted me-1">Terms of use.</a>
